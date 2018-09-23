@@ -40,12 +40,15 @@ const styles = StyleSheet.create ({
     lineText: {
         fontSize: 20,
         paddingLeft:15,
+        flex: 5
 
     },
     avatar:{
         aspectRatio: 1,
-        width:50
-    }
+        flex: 1, 
+        marginLeft: 15,
+        borderRadius: 50    
+    },
 });
 
 export default Peoplelist;

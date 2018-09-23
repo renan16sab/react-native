@@ -1,21 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, Image } from 'react-native';
 
-import peoplelistitems from './peoplelistitems';
+import { firststring } from '../util';
+
 const Peoplelist = props => {
     const { peoples } = props;
+    const textElements = peoples.map(people => {
+        const { title, first, last } = people.name;
+    return (
+        <View key={ first } style={styles.line}>
+        <Image style={styles.avatar} source={{ uri: people.picture.thumbnail }} />
+    <Text style={styles.lineText}>
+    {/* {title + ' ' + first + ' ' + last } */}
+    {`${firststring(title)} ${firststring(first)} ${firststring(last)} `}
 
-    const items = peoples.map(people => {
-        return (
-             <peoplelistitems
-              key= {people.name.first} people = {people}    />
-            );
-
-    });
+    </Text>
+    </View>
+);
+    
+      });
     
     return (
         <View style={styles.container}>
-            { items }
+            { textElements }
         </View>
  )
 };
@@ -23,8 +30,22 @@ const Peoplelist = props => {
 const styles = StyleSheet.create ({
     container:{
     backgroundColor: '#e2f9ff'
+    },
+    line:{
+        height: 60,
+        alignItems: 'center',
+        flexDirection: 'row',
+        borderBottomWidth: 1
+    },
+    lineText: {
+        fontSize: 20,
+        paddingLeft:15,
+
+    },
+    avatar:{
+        aspectRatio: 1,
+        width:50
     }
-    
-})
+});
 
 export default Peoplelist;

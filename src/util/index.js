@@ -1,0 +1,1 @@
+export { default as firststring } from './firststring';

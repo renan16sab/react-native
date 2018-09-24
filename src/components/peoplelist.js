@@ -1,14 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image } from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { firststring } from '../util';
 
 const Peoplelist = props => {
-    const { peoples } = props;
+    const { peoples, onPress } = props;
     const textElements = peoples.map(people => {
         const { title, first, last } = people.name;
     return (
-        <View key={ first } style={styles.line}>
+        <TouchableOpacity onPress={() => {
+        onPress({ people });     
+    }}>
+        <View key={ title, first, last } style={styles.line}         
+        onPress={onPress}
+>
         <Image style={styles.avatar} source={{ uri: people.picture.thumbnail }} />
     <Text style={styles.lineText}>
     {/* {title + ' ' + first + ' ' + last } */}
@@ -16,6 +21,7 @@ const Peoplelist = props => {
 
     </Text>
     </View>
+    </TouchableOpacity> 
 );
     
       });
